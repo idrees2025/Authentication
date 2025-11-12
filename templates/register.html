@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Registration{% endblock %}
+{% block content %}
+<div style="justify-content: center;display:flex;" >
+    <form action="" method="post">
+        <h1>Registration</h1>
+        {% csrf_token %}
+        <div>
+            <label for="{{form.username.id_for_label}}">Username</label><br>
+            <input style="width: 8cm;" type="text" id="{{form.username.id}}" placeholder="Enter your Username" name="{{form.username.name}}"> <br>
+            {% if form.username.errors %}
+              <span style="color: red;">{{form.username.errors}}</span> <br>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="{{form.email.id_for_label}}">Email</label> <br>
+            <input style="width: 8cm;" type="email" id="{{form.email.id}}" placeholder="Enter your Email" name="{{form.email.name}}"> <br>
+            {% if form.email.errors %}
+              <span style="color: red;">{{form.email.errors}}</span> <br>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="{{form.password1.id_for_label}}">Password</label> <br>
+            <input style="width: 8cm;" type="password" id="{{form.password1.id}}" placeholder="Enter your Password" name="{{form.password1.name}}"> <br>
+            {% if form.password1.errors %}
+              <span style="color: red;">{{form.password1.errors}}</span> <br>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="{{form.password2.id_for_label}}">Re-Typpe Password</label> <br>
+            <input style="width: 8cm;" type="password" id="{{form.password2.id}}" placeholder="Enter Again Password" name="{{form.password2.name}}"> <br>
+            {% if form.password2.errors %}
+              <span style="color: red;">{{form.password2.errors}}</span> <br>
+            {% endif %}
+        </div>
+        
+        <div>
+            Already have an account ? <a href="{% url 'login' %} ">Go</a> <br>
+            <button class="btn btn-success" type="submit" >Register</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
