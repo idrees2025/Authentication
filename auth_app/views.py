@@ -33,7 +33,7 @@ class login_view(View):
             user=form.get_user()
             login(request,user)
             return redirect('dashboard')
-        
+
 class password_reset(View):
     @method_decorator(login_required(login_url='login'))
     def get(self,request,*args, **kwargs):
@@ -41,8 +41,9 @@ class password_reset(View):
         return render(request,'password_reset.html',{'form':form})
 
     def post(self,request,*args, **kwargs):
-        form=PasswordChangeForm(request.POST)
+        form=PasswordChangeForm(user=request.user,data=request.POST)
         if form.is_valid():
+            form.save()
             return redirect('dashboard')
 
 class dashboard_view(View):
