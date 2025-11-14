@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from django.utils.decorators import method_decorator
-from django.contrib.auth import login
+from django.contrib.auth import login,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from auth_app.forms import registerform
@@ -43,6 +43,7 @@ class password_reset(View):
     def post(self,request,*args, **kwargs):
         form=PasswordChangeForm(user=request.user,data=request.POST)
         if form.is_valid():
+            update_session_auth_hash(request,form.user)
             form.save()
             return redirect('dashboard')
 
