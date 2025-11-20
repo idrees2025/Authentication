@@ -19,8 +19,12 @@
             {% if form.password.errors %}
               <span style="color: red;">{{form.password.errors}}</span> <br>
             {% endif %}
-        </div>        
-        
+        </div> 
+
+        <div>
+            Forget Password <a href="{% url 'password_reset' %}">Go</a>
+        </div>
+
         <div>
             Don't have an account ? <a href="{% url 'register' %}">Go</a> <br>
             <button class="btn btn-success" type="submit">Login</button>
