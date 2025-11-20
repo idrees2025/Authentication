@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from django.utils.decorators import method_decorator
-from django.contrib.auth import login,update_session_auth_hash
+from django.contrib.auth import login,update_session_auth_hash,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from auth_app.forms import registerform
@@ -54,5 +54,5 @@ class dashboard_view(View):
 
 @login_required(login_url='login')
 def logout__view(reuqest):
-    reuqest.session.flush()
+    logout(reuqest)
     return redirect('login')
