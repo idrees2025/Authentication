@@ -33,6 +33,8 @@ class login_view(View):
             user=form.get_user()
             login(request,user)
             return redirect('dashboard')
+        else:
+            return render(request,'login.html',{'form':form,'invalid':'invalid username or passowrd'})
 
 class password_reset(View):
     @method_decorator(login_required(login_url='login'))
